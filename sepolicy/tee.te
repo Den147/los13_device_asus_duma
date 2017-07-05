@@ -1,0 +1,6 @@
+# /data/misc/playready labeling
+type_transition tee system_data_file:dir drm_data_file;
+
+# Read from persist partition
+r_dir_file(tee, persist_data_file)
+

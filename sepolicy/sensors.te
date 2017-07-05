@@ -1,0 +1,30 @@
+# Integrated qualcomm sensor process
+type sensors, domain;
+type sensors_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(sensors)
+
+# Change own perms to (nobody,nobody)
+# Chown /data/misc/sensors/debug/ to nobody
+dontaudit sensors self:capability fsetid;
+
+# Access /data/misc/sensors/debug and /data/system/sensors/settings
+
+# Create /data/app/sensor_ctl_socket (Might want to change location).
+type_transition sensors apk_data_file:sock_file sensors_socket "sensor_ctl_socket";
+# Trying to be restrictive with perms on apk_data_file
+# Socket can be deleted. So might have to keep in order to work.
+
+# Create directories and files under /data/misc/sensors
+# and /data/system/sensors. Allow generic r/w file access.
+
+# Access sensor nodes (/dev/msm_dsps)
+
+# Access power management controls
+
+# Access to /persist/sensors
+
+# Wake lock access
+wakelock_use(sensors)
+

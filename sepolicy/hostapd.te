@@ -1,0 +1,2 @@
+# Reading from /persist/wifi/.macaddr
+r_dir_file(hostapd, persist_wifi_file)

@@ -1,0 +1,12 @@
+# remote storage process (runs as nobody)
+type rmt, domain;
+type rmt_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(rmt)
+
+# Wake lock access
+wakelock_use(rmt)
+
+# rmt_storage shuts itself down if there is an unknown value of ro.baseband
+set_prop(rmt, ctl_rmt_prop)

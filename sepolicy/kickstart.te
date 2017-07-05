@@ -1,0 +1,28 @@
+# kickstart processes and scripts (system process)
+type kickstart, domain;
+type kickstart_exec, file_type, exec_type;
+
+init_daemon_domain(kickstart)
+
+# kickstart_checker.sh changes block devices
+# /dev/block/platform/msm_sdcc.1/by-name/m9kefs*
+
+# Let qcks access /dev/mdm node (modem driver)
+
+# Access USB host ks bridge drivers
+
+# Read and write to /dev/block/mmcblk0p[567]
+
+# Write contents of block device to kickstart data dir
+
+# Read radio firmware file(s)
+
+# Run dd from toolbox on firmware files
+
+# Wake lock access
+wakelock_use(kickstart)
+
+# Set property key gsm.radio.kickstart
+set_prop(kickstart, radio_prop)
+
+# Access /sys/module/rmnet_usb/parameters/rmnet_data_init

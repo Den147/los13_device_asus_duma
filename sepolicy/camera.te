@@ -1,0 +1,18 @@
+# Qualcomm MSM camera
+type camera, domain;
+type camera_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(camera)
+
+# Create front and back camera sockets (/data/cam_socket[12])
+type_transition camera system_data_file:sock_file camera_socket "cam_socket1";
+type_transition camera system_data_file:sock_file camera_socket "cam_socket2";
+
+type_transition camera system_data_file:file camera_data_file "fdAlbum";
+
+# Connect to sensor socket (/data/app/sensor_ctl_socket)
+unix_socket_connect(camera, sensors, sensors)
+
+# Read camera files from persist filesystem
+r_dir_file(camera, persist_camera_file)
